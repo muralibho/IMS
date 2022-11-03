@@ -7,8 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class LoginService {
 
-  constructor(private _httpclient:HttpClient) { }
+  constructor(private _httpClient:HttpClient) { }
+  
   login(data:any):Observable<any>{
-    return this._httpclient.post("", data)
+         return this._httpClient.post("https://reqres.in/api/login",data);
   }
 }
