@@ -16,14 +16,14 @@ export class CreateStudentComponent implements OnInit {
       email: new FormControl(),
       batch: new FormControl(),
       address: new FormGroup(
-      {
-        city: new FormControl(),
-        mandal: new FormControl(),
-        distrit: new FormControl(),
-        state: new FormControl(),
-        Pincode: new FormControl()
-      }
-      )
+        {
+          city: new FormControl(),
+          mandal: new FormControl(),
+          distrit: new FormControl(),
+          state: new FormControl(),
+          Pincode: new FormControl()
+        }
+        )
     }
   )
 
