@@ -1,11 +1,13 @@
 .parent{
-      height: 100vh;
-      width: 100vw;
+      height: 160vh;
+      width: 110vw;
+      display: flex;
       background-color: mediumseagreen;
 }
 
 .child1{
-    width : 15%;
+    width : 17%;
     height: 100%;
     background-color: red;
+    color: violet;
 }

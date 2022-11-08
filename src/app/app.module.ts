@@ -10,6 +10,7 @@ import { LoginComponent } from './components/login/login.component';
 import { CreateStudentComponent } from './create-student/create-student.component';
 import { AllStudentsComponent } from './all-students/all-students.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { PagenotfoundComponent } from './components/pagenotfound/pagenotfound.component';
 
 
 
@@ -19,6 +20,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     AppComponent,
     DashboardComponent,
     LoginComponent,
+    PagenotfoundComponent,
     CreateStudentComponent,
     AllStudentsComponent
   ],
