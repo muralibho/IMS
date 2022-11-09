@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-student',
@@ -7,6 +7,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./create-student.component.css']
 })
 export class CreateStudentComponent implements OnInit {
+submit() {
+throw new Error('Method not implemented.');
+}
 
   public studentForm:FormGroup = new FormGroup(
     {
@@ -23,17 +26,51 @@ export class CreateStudentComponent implements OnInit {
           state: new FormControl(),
           Pincode: new FormControl()
         }
-        )
-    }
+        ),
+        company: new FormControl(
+          {
+            name: new FormControl(),
+            location: new FormControl(),
+            package: new FormControl(),
+            offerDate:new FormControl()
+        }
+        ),
+        educations: new FormArray([]),
+        sourceType: new FormControl(),
+        sourceForm: new FormControl(),
+        referalName: new FormControl()
+      }
   )
+     
+  get educationsFormArray(){
+    return this.studentForm.get('educations') as FormArray;
+
+  }
+  add(){
+    this.educationsFormArray.push(
+      new FormGroup(
+        {
+          qualification: new FormControl(),
+          year: new FormControl(),
+          percentage: new FormControl()
+        }
+      )
+    )
+  }
+  
+    delete(i:number){
+      this.educationsFormArray.removeAt(i);
+    }
+  
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  submit(){
-
-  }
-
+  Submit(){
+    console.log(this.studentForm);
+    this.studentForm.markAllAsTouched();
+   }
+   
 }

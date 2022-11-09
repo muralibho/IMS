@@ -2,18 +2,34 @@
 <form [formGroup]="studentForm">
     <label>name:</label>
     <input type="text" formControlName="name">
+    <div class="error" *ngIf="studentForm.get('name')?.touched && studentForm.get('name')?.invalid">
+        <p *ngIf="studentForm.get('name')?.errors?.['required']">This field is required</p>
+        <p *ngIf="studentForm.get('name')?.errors?.['minLength']">Min 3 chars required</p>
+        <p *ngIf="studentForm.get('name')?.errors?.['maxLength']">Max 10 chars required</p>
+    </div>
     <br>
-    <label>gender:</label>
-    <input type="radio" formControlName="gender">
+    <label>Gender:</label>
+    <input type="radio" formControlName="male" name="gender">
+    <div class="error" *ngIf="studentForm.get('gender')?.touched && studentForm.get('gender')?.invalid">
+
+    </div>
+    <label>Male</label>
+    <input type="radio" formControlName="female" name="gender">
+    <label>Female</label>
     <br>
     <label>mobile:</label>
-    <input type="text" formControlName="mobile">
+    <input type="number" formControlName="mobile">
     <br>
+    <div class="error" *ngIf="studentForm.get('mobile')?.touched && studentForm.get('mobile')?.invalid">
+        <p *ngIf="studentForm.get('mobile')?.errors?.['required']">This field is required</p>
+        <p *ngIf="studentForm.get('mobile')?.errors?.['min']">phone no should be min 10 digits</p>
+        <p *ngIf="studentForm.get('mobile')?.errors?.['max']">phone no shouldbe max 10 digits</p>
+    </div>
     <label>email:</label>
     <input type="text" formControlName="email">
     <br>
     <label>batch:</label>
-    <input type="text" formControlName="batch">
+    <input type="number" formControlName="batch">
     <br>
     <h2>Address:</h2>
     <label>City:</label>
@@ -29,9 +45,60 @@
     <input type="text" formControlName="state">
     <br>
     <label>Pincode:</label>
-    <input type="text" formControlName="pincode">
+    <input type="number" formControlName="pincode">
     <br>
+    <div class="error" *ngIf="studentForm.get('pincode')?.touched && studentForm.get('pincode')?.invalid">
+        <p *ngIf="studentForm.get('pincode')?.errors?.['required']">This field is required</p>
+        <p *ngIf="studentForm.get('pincode')?.errors?.['min']">pincode should be Min 6 digits</p>
+        <p *ngIf="studentForm.get('pincode')?.errors?.['max']">pincode should be Max 6 digits </p>
 
-    
+    </div>
+    <h1>Company:</h1>
+    <label>Name:</label>
+    <input type="text" formControlName="name">
+    <br>
+    <label>Location:</label>
+    <input type="text" formControlName="location">
+    <br>
+    <label>Package:</label>
+       <input type="number" formControlName="package">
+       <br>
+       <div class="error" *ngIf="studentForm.get('package')?.touched && studentForm.get('package')?.invalid">
+          <p *ngIf="studentForm.get('package')?.errors?.['required']">This field is required</p>
+          <p *ngIf="studentForm.get('package')?.errors?.['min']">package should be min 6 digits</p>
+          <p *ngIf="studentForm.get('package')?.errors?.['max']">package should be max 7 digits</p>
+      </div>
+       <label>OfferDate:</label>
+       <input type="date" formControlName="offerDate">
+       <br>
+
+       <button (click)="add()">Add Educational Details</button>
+     <div formArrayName="educations">
+         <div *ngFor="let education of educationsFormArray?.controls;let i=index">
+              <div formGroupName="{{i}}">
+                <input type="text" formControlName="qualification" placeholder="qualification"><br>
+                <input type="text" formControlName="year" placeholder="year"><br>
+                <input type="number" formControlName="percentage" placeholder="percentage"><br>
+                <button class="btn btn-danger" (click)="delete(i)">delete</button>
+              </div>
+          </div>
+     </div>
+
+     <div>
+        <label>Source Type:</label>
+        <input type="radio" name="source type" formControlName="source type" value="direct">
+        <label>Direct</label>
+        <input type="radio" name="source type" formControlName="source type" value="refer">
+         <label>Refer</label>
+         <div *ngIf="studentForm.get('source type')?.value == 'direct'">
+              <label>InputBox:</label>
+              <input type="text" formControlName="inputbox">
+         </div>
+         <div *ngIf="studentForm.get('source type')?.value == 'refer'">
+              <label>InputBox:</label>
+              <input type="text" formControlName="inputbox"> 
+         </div>
+    </div>
+
     <button (click)="submit()">submit</button>
 </form>
